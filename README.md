@@ -19,29 +19,6 @@ This project implements a **minimal e-commerce checkout flow** with the followin
 - **Payment:** Razorpay (optional) or dummy payment
 - **Others:** dotenv, concurrently
 
-
-Folder Structure
-root/
-├─ backend/
-│  ├─ controllers/
-│  ├─ models/
-│  ├─ routes/
-│  ├─ server.js
-│  └─ package.json
-├─ frontend/
-│  ├─ src/
-│  │  ├─ api/
-│  │  ├─ components/
-│  │  ├─ context/
-│  │  ├─ pages/
-│  │  └─ App.jsx
-│  ├─ public/
-│  ├─ package.json
-│  └─ .env
-├─ package.json
-└─ README.md
-Backend Setup
-
 Backend Setup
 
 # Backend Setup
