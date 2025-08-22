@@ -7,7 +7,7 @@ This project implements a **minimal e-commerce checkout flow** with the followin
 - User authentication (**signup/login**)
 - Add/remove items from **cart**
 - Checkout flow with **shipping address**
-- **Dummy payment** or Razorpay integration
+- Razorpay integration
 - Backend stores **users, orders, and products**
 - **Admin dashboard** to view all orders
 - Fallback images for products without images
