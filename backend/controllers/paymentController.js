@@ -1,13 +1,21 @@
 const Razorpay = require("razorpay");
 const Order = require("../models/Order");
 
-const razorpayInstance = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
+let razorpayInstance = null;
+
+if (process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET) {
+  razorpayInstance = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+  });
+}
 
 const createRazorpayOrder = async (req, res) => {
-  const { amount, orderId } = req.body; // amount in rupees
+  if (!razorpayInstance) {
+    return res.status(503).json({ message: "Payment service unavailable" });
+  }
+
+  const { amount, orderId } = req.body;
 
   if (!amount || !orderId) {
     return res.status(400).json({ message: "Amount and orderId are required" });
@@ -15,13 +23,12 @@ const createRazorpayOrder = async (req, res) => {
 
   try {
     const options = {
-      amount: amount, // convert INR to paise
+      amount: amount * 100,
       currency: "INR",
       receipt: `order_rcpt_${orderId}`,
     };
 
     const order = await razorpayInstance.orders.create(options);
-
     res.status(201).json(order);
   } catch (err) {
     console.error(err);
@@ -30,12 +37,16 @@ const createRazorpayOrder = async (req, res) => {
 };
 
 const verifyPayment = async (req, res) => {
+  if (!razorpayInstance) {
+    return res.status(503).json({ message: "Payment service unavailable" });
+  }
+
   const { razorpay_payment_id, razorpay_order_id, razorpay_signature, orderId } = req.body;
 
   if (!razorpay_payment_id || !razorpay_order_id || !razorpay_signature || !orderId) {
     return res.status(400).json({ message: "Missing payment verification data" });
   }
-  
+
   try {
     const order = await Order.findById(orderId);
     if (!order) return res.status(404).json({ message: "Order not found" });

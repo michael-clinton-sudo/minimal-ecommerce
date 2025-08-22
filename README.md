@@ -88,7 +88,7 @@ Start the frontend:
 npm start
 
 
-The frontend runs on [http://localhost:3000](http://localhost:3000).
+The frontend runs on [http://localhost:1573](http://localhost:1573).
 
 > **Note:** Environment variables in React must start with `REACT_APP_` to be accessible.
 
@@ -119,6 +119,15 @@ npm install
 
 ```bash
 npm run dev
+
+
+### Admin Credentials
+
+- Email: admin@example.com
+
+- Password: admin123
+
+- Admin users can access /admin/orders to view all orders.
 
 
 ### Admin Dashboard
