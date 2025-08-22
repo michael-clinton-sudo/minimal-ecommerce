@@ -91,7 +91,7 @@ const PlaceOrder = () => {
       const razorOrder = await createRazorpayOrder(cart.totalPrice, createdOrder._id, user.token);
 
       const options = {
-        key: "rzp_test_aoXAc54cIyrPl1",
+        key:  "rzp_test_aoXAc54cIyrPl1", // process.env.REACT_APP_RAZORPAY_KEY_ID
         amount: razorOrder.amount,
         currency: razorOrder.currency,
         name: "My Shop",
