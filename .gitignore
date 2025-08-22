@@ -1,4 +1,7 @@
-# Node modules
+# Root node modules
+/node_modules/
+
+# Node modules in frontend and backend
 frontend/node_modules/
 backend/node_modules/
 
