@@ -16,7 +16,7 @@ This project implements a **minimal e-commerce checkout flow** with the followin
 
 - **Frontend:** React, styled-components, React Router
 - **Backend:** Node.js, Express, MongoDB, Mongoose
-- **Payment:** Razorpay (optional) or dummy payment
+- **Payment:** Razorpay API
 - **Others:** dotenv, concurrently
 
 Backend Setup
